@@ -25,5 +25,8 @@ function handleMotion(event) {
 }
 
 export function get2dGravity() {
+    if (window.location.href.includes("localhost")) {
+        return { x: 0, y: -9.8}
+    }
     return { x, y }
 }

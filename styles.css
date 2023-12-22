@@ -1,8 +1,12 @@
 #ball-container {
-    position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    justify-content: center;
+    align-items: center;
 }
 
 #ball {
@@ -12,23 +16,6 @@
     border-radius: 50%;
     position: absolute;
     bottom: 0;
-}
-#gravity-line {
-    position: absolute;
-    height: 30vh;
-    /* 30% of the viewport height */
-    width: 2px;
-    /* Thin line */
-    background-color: black;
-    /* Visible color */
-    left: 50%;
-    /* Centered horizontally */
-    top: 50%;
-    /* Centered vertically */
-    transform-origin: center;
-    /* Rotate around the center of the line */
-    transform: translateY(-50%);
-    /* Adjust for vertical centering */
 }
 
 p {
