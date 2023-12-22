@@ -1,6 +1,3 @@
-let gravityCenterX = 0;
-let gravityCenterY = 0;
-
 import { get2dGravity, requestPermission } from './sensors.js';
 
 function updateBallPosition() {
@@ -12,14 +9,24 @@ function updateBallPosition() {
 
 // Start the loop
 updateBallPosition();
-const rp = requestPermission()
-if (typeof rp === 'string') {
-    setElementInnerHtml('msg', rp);
-}
 
 function setElementInnerHtml(name: string, value: string) {
     const x = document.getElementById(name);
     if (x) {
         x.innerHTML = `${value}`;
+    }
+}
+
+window.onload = function () {
+    const startButton = document.getElementById("start-btn");
+    if (startButton) {
+        setElementInnerHtml('msg', 'Registered click handler');
+        startButton.onclick = function (e) {
+            setElementInnerHtml('msg', 'Requesting permission');
+            e.preventDefault();
+            const rp = requestPermission()
+
+            setElementInnerHtml('msg', `rp: ${rp}`);
+        };
     }
 }
