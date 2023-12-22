@@ -34,3 +34,9 @@
 p {
     font-size: 3rem;
 }
+
+button {
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+}

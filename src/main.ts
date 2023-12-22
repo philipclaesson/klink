@@ -2,8 +2,8 @@ import { get2dGravity, requestPermission } from './sensors.js';
 
 function updateBallPosition() {
     const g = get2dGravity();
-    setElementInnerHtml('x', g.x == null ? 'null' : `x: ${g.x}`)
-    setElementInnerHtml('y', g.y == null ? 'null' : `y: ${g.y}`)
+    setElementInnerHtml('x1', `x: ${g.x}`)
+    setElementInnerHtml('y1', `y: ${g.y}`)
     requestAnimationFrame(updateBallPosition);
 }
 
