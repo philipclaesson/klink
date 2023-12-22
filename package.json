@@ -1,5 +1,5 @@
 {
-  "name": "ts-template",
+  "name": "klink",
   "version": "1.0.0",
   "description": "javascript dj app",
   "main": "src/index.js",
@@ -22,5 +22,8 @@
     "typescript": "^5.1.6",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "motion-sensors-polyfill": "^0.3.7"
   }
 }

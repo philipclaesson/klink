@@ -1,4 +1,4 @@
-## ts-template
-- replace `ts-template` everywhere
+## klink
+- replace `klink` everywhere
 - npm install
 - done
