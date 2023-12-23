@@ -25,8 +25,29 @@ function handleMotion(event) {
 }
 
 export function get2dGravity() {
-    if (window.location.href.includes("localhost")) {
-        return { x: 0, y: -9.8}
-    }
     return { x, y }
+}
+
+// add window eventlistener for keydown
+window.addEventListener("keydown", handleKeyDown);
+function handleKeyDown(e) {
+    if (!window.location.href.includes("localhost")) {
+        return
+    }
+    if (e.key === "ArrowUp") {
+        y = 9.8
+        x = 0
+    }
+    if (e.key === "ArrowDown") {
+        y = -9.8
+        x = 0
+    }
+    if (e.key === "ArrowLeft") {
+        x = -9.8
+        y = 0
+    }
+    if (e.key === "ArrowRight") {
+        x = 9.8
+        y = 0
+    }
 }

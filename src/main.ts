@@ -1,9 +1,11 @@
 import { get2dGravity, requestPermission } from './sensors.js';
+import { loadPhysics, setGravity } from './physics'
 
 function updateBallPosition() {
     const g = get2dGravity();
     setElementInnerHtml('x1', `x: ${g.x}`)
     setElementInnerHtml('y1', `y: ${g.y}`)
+    setGravity(g.x, g.y);
     requestAnimationFrame(updateBallPosition);
 }
 
@@ -17,6 +19,13 @@ function setElementInnerHtml(name: string, value: string) {
     }
 }
 
+function removeElement(name: string) {
+    const x = document.getElementById(name);
+    if (x) {
+        x.remove();
+    }
+}
+
 window.onload = function () {
     const startButton = document.getElementById("start-btn");
     if (startButton) {
@@ -25,8 +34,10 @@ window.onload = function () {
             setElementInnerHtml('msg', 'Requesting permission');
             e.preventDefault();
             const rp = requestPermission()
-
             setElementInnerHtml('msg', `rp: ${rp}`);
+            removeElement('start-btn');
+            removeElement('msg');
+            loadPhysics();
         };
     }
 }

@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/main.ts',
   devtool: 'inline-source-map',
+  // devtool: 'source-map', // might give better performance for matter.js?
   module: {
     rules: [
       {
