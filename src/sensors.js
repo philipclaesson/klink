@@ -20,7 +20,7 @@ export function requestPermission() {
 
 function handleMotion(event) {
     x = event.accelerationIncludingGravity.x
-    y = event.accelerationIncludingGravity.y
+    y = event.accelerationIncludingGravity.y * -1 // invert y axis
     z = event.accelerationIncludingGravity.z
 }
 
