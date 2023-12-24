@@ -1,4 +1,5 @@
 import * as Matter from 'matter-js';
+import { playSample } from './sound';
 
 // module aliases
 const Engine = Matter.Engine,
@@ -15,7 +16,7 @@ export function loadPhysics() {
 
     // create an engine
     engine = Engine.create();
-    engine.gravity.scale = 0.0001;
+    engine.gravity.scale = 0.0005;
 
     // Create a renderer
     render = Render.create({
@@ -75,32 +76,34 @@ export function setGravity(x: number, y: number) {
     }
 }
 
-function handleCollision(event: Matter.IEventCollision<Matter.Engine>) {
+function labelFromCollisionEvent(event: Matter.IEventCollision<Matter.Engine>): string {
     const source = event.source
     let bodyLabel: string = ''
     if (source == null)
-        return;
-    const pairs: any = source.pairs
-    if (pairs == null)
-        return;
-    const collisions: any = pairs.list
+        return '';
+    const collisions: any = source.pairs.list
     if (collisions == null)
-        return;
+        return '';
     if (!Array.isArray(collisions)) {
         console.log('collisions: Not an array')
-        return;
+        return '';
     }
     if (!collisions.length) {
         console.log('collisions: Empty array')
-        return;
+        return '';
     }
     if (!collisions[0].bodyB) {
         console.log('collisions: BodyB is null', collisions[0])
-        return;
+        return '';
     }
     bodyLabel = collisions[0].bodyB.label
+    return bodyLabel;
+}
 
-    console.log(`ball collided with ${bodyLabel}`)    
+function handleCollision(event: Matter.IEventCollision<Matter.Engine>) {
+    const wallLabel = labelFromCollisionEvent(event);
+    // console.log('Collision with wall', wallLabel);
+    playSample(wallLabel);
 }
 
 // Resize handling

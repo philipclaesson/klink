@@ -1,5 +1,6 @@
 import { get2dGravity, requestPermission } from './sensors.js';
 import { loadPhysics, setGravity } from './physics'
+import { loadSound } from './sound'
 
 function updateBallPosition() {
     const g = get2dGravity();
@@ -37,6 +38,7 @@ window.onload = function () {
             setElementInnerHtml('msg', `rp: ${rp}`);
             removeElement('start-btn');
             removeElement('msg');
+            loadSound();
             loadPhysics();
         };
     }
