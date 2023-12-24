@@ -33,6 +33,7 @@ export function loadPhysics() {
 
     // create two boxes and a ground
     const ball = Bodies.circle(400, 200, 80, {
+        restitution: 0.6, // Bounciness
         render: {
             fillStyle: 'red'
         }
@@ -45,12 +46,6 @@ export function loadPhysics() {
     createWall(window.innerWidth / 2, window.innerHeight - wallThickness / 2, window.innerWidth, wallThickness, 'blue'); // Bottom
     createWall(wallThickness / 2, window.innerHeight / 2, wallThickness, window.innerHeight, 'green'); // Left
     createWall(window.innerWidth - wallThickness / 2, window.innerHeight / 2, wallThickness, window.innerHeight, 'yellow'); // Right
-
-
-    // Render.lookAt(render, {
-    //     min: { x: 0, y: 0 },
-    //     max: { x: width, y: height }
-    // });
 
     // run the renderer
     Render.run(render);
