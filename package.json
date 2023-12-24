@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "javascript dj app",
   "main": "src/index.js",
+  "sideEffects": false,
   "scripts": {
     "start": "live-server --no-browser",
     "build": "webpack",

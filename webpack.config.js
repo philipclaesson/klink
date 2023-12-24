@@ -13,6 +13,7 @@ module.exports = {
       },
     ],
   },
+  mode: 'production',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
@@ -21,4 +22,3 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
 };
-
