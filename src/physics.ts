@@ -15,6 +15,7 @@ export function loadPhysics() {
 
     // create an engine
     engine = Engine.create();
+    engine.gravity.scale = 0.0001;
 
     // Create a renderer
     render = Render.create({
