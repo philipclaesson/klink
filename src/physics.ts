@@ -76,34 +76,41 @@ export function setGravity(x: number, y: number) {
     }
 }
 
-function labelFromCollisionEvent(event: Matter.IEventCollision<Matter.Engine>): string {
+function labelFromCollisionEvent(event: Matter.IEventCollision<Matter.Engine>) {
     const source = event.source
-    let bodyLabel: string = ''
+    let label: string = ''
     if (source == null)
-        return '';
+        return { label: '', speed: 0};
     const collisions: any = source.pairs.list
     if (collisions == null)
-        return '';
+        return { label: '', speed: 0};
     if (!Array.isArray(collisions)) {
         console.log('collisions: Not an array')
-        return '';
+        return { label: '', speed: 0};
     }
     if (!collisions.length) {
         console.log('collisions: Empty array')
-        return '';
+        return { label: '', speed: 0};
+    }
+    if (!collisions[0].bodyA) {
+        console.log('collisions: BodyA is null', collisions[0])
+        return { label: '', speed: 0};
     }
     if (!collisions[0].bodyB) {
         console.log('collisions: BodyB is null', collisions[0])
-        return '';
+        return { label: '', speed: 0};
     }
-    bodyLabel = collisions[0].bodyB.label
-    return bodyLabel;
+    label = collisions[0].bodyB.label
+    const speed: number = collisions[0].bodyA.speed
+
+    return {label, speed};
 }
 
 function handleCollision(event: Matter.IEventCollision<Matter.Engine>) {
-    const wallLabel = labelFromCollisionEvent(event);
-    // console.log('Collision with wall', wallLabel);
-    playSample(wallLabel);
+    const {label, speed} = labelFromCollisionEvent(event);
+    // console.log('Collision with wall', label);
+    console.log(event)
+    playSample(label, speed);
 }
 
 // Resize handling

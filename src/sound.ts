@@ -18,27 +18,28 @@ export async function loadSound() {
     initiated = true;
 }
 
-export function playSample(label: string): void {
+export function playSample(label: string, speed: number): void {
     if (!initiated) {
         console.log(`not initiated`)
         return
     }
+    const velocity = Math.min(1, Math.max(0.1, speed / 40))
     const parts = label.split('-');
     const wall = parts[0];
     const bin = parts.length > 1 ? parts[1] : '';
 
     switch (wall) {
         case 'Left':
-            sampler.triggerAttackRelease(["Eb4"], 4);
+            sampler.triggerAttackRelease(["Eb4"], 4, undefined, velocity);
             break;
         case 'Right':
-            sampler.triggerAttackRelease(["G3"], 4);
+            sampler.triggerAttackRelease(["G3"], 4, undefined, velocity);
             break;
         case 'Top':
-            sampler.triggerAttackRelease(["G4"], 4);
+            sampler.triggerAttackRelease(["G4"], 4, undefined, velocity);
             break;
         case 'Bottom':
-            sampler.triggerAttackRelease(["Bb4"], 4);
+            sampler.triggerAttackRelease(["Bb4"], 4, undefined, velocity);
             break;
         default:
             console.log(`unexpected wall ${wall}`)
