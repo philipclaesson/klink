@@ -19,9 +19,11 @@ export function requestPermission() {
 }
 
 function handleMotion(event) {
-    x = event.accelerationIncludingGravity.x
-    y = event.accelerationIncludingGravity.y * -1 // invert y axis
-    z = event.accelerationIncludingGravity.z
+    // add some extra weight to the acceleration because its hard
+    // to move the phone as forceful as gravity
+    x = event.accelerationIncludingGravity.x + event.acceleration.x
+    y = (event.accelerationIncludingGravity.y + event.acceleration.y) * -1 // invert y axis
+    z = event.accelerationIncludingGravity.z + event.acceleration.z
 }
 
 export function get2dGravity() {
